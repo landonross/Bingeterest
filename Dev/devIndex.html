@@ -40,20 +40,10 @@
         var genreList =[];
         var TMDBnameid = [];
         
+        //on page load items
         $(document).ready()
         {
             buildQueryTMDB()
-            // for (let i = 0; i < genreList.length; i++) {
-            //         // var list = $("#myList");
-            //         var TMDBid = genreList[i].id;
-            //         var TMDBname = genreList[i].name;
-            //         // var TMDBlist = $("<li></li>").text(TMDBid + ":  "+ TMDBname)
-            //         // var TMDBid = genresList[i].id;
-            //         // var TMDBname = genresList[i].name;
-            //         $("#myList").append('<li>' + TMDBid + ":  "+ TMDBname + '</li>');
-            //         // list.append(TMDBlist);
-                    
-            //     }
 
 
         };
@@ -63,11 +53,11 @@
         //Getting Value
         var selValue = $("#genraDropDown").val();
         //Setting Value
-        // $("#textFieldValueJQ").val(selValue);
+        // $("#").val(selValue);
         console.log("YOU selected value:    " + selValue)
     });
 
-
+        //function to build the URL used to make the API request.
         function buildQueryTMDB() {
             // Set the API key
             var APIKey = "7c2207b398a6d440727425799edd2f6f";
@@ -92,20 +82,21 @@
             var queryParams = "&language=en-US&page=1";
 
             // queryURL query the API
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=" + APIKey + "&language=en-US&" + queryParams;
-            // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
-            // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+            
+            // movieGenreURL = https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+            // tvByIDURL = https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
             // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/TV-14/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US";
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1";
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US"
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/69050/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
+            
+            
+            // popularURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
+            // contentRatingsURL = "https://api.themoviedb.org/3/tv/69050/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
             TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f" + queryParams;
 
             // UVURLquery()
             return TMDBtvqueryURL;
         };
 
+        //function to query TMBD genre API
         function popularTVURLquery() {
             $.ajax({
                 url: TMDBtvqueryURL,
@@ -115,25 +106,26 @@
                 method: "GET",
             }).then(function (TMDBresponseTV) {
                 console.log(TMDBresponseTV);
-
+                // pushes the response into array genrelist
                 var TMBgenre = TMDBresponseTV.genres
                 for (let i = 0; i < TMDBresponseTV.genres.length; i++) {
                     genreList.push(TMBgenre[i]);
                     
                 }
-                // TMDBresponseTV.push(genreList);
-
+                
+                //create li to view ID and Name for each genre
                 for (let i = 0; i < genreList.length; i++) {
                     var TMDBid = genreList[i].id;
                     var TMDBname = genreList[i].name;
                     var idName = TMDBid + ":  " + TMDBname;
                     TMDBnameid.push(idName);
                     $("#myList").append('<li>' + idName + '</li>');
+                    //create drop down, id for each, and value for each item in drop down.
                     $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
                     
 
                 }
-
+                //create drop down list of names base don the dd# id created.
                 for (let i = 0; i < genreList.length; i++) {
                     var TMDBname = genreList[i].name;
                     $("#dd" + i ).text(TMDBname);
