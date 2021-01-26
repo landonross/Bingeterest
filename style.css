@@ -1,8 +1,16 @@
 #nav{
     height: 120px;
     background-image:url("videoblocks-abstract-computer-animated-background-with-small-glowing-particles-of-blue-color-falling-from-above-against-black-background_hbwcdrnlz_thumbnail-1080_01.png");
-    font-family: 'Abril Fatface', cursive;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;  
+    
+    
+}
 
+.brand-logo{
+    margin-top: 30px;
+    margin-left: 25px;
+    
 }
 
 
@@ -14,3 +22,8 @@ body{
 .card-container{
     background-color: #80deea;
 }
+
+#nav-mobile {
+    margin-top: 50px;
+}
+    

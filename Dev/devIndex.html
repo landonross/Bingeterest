@@ -19,71 +19,128 @@
         <img src="">
     </div>
     <div id="message"></div>
-    <ul id="pagination"></ul>
+    <div>
+        <select id="genraDropDown" style = "width: 300px;">
+            </select>
+    </div>
+    <ul id="myList"></ul>
 
 
-    <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous"></script>
+    <!-- <script src="http://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- <script src="JS/jquery.twbsPagination.js"></script> -->
+    
     <script>
 
-        // TMDBtvqueryURL = "";
-        // $(document).ready()
-        // {
-            function buildQueryTMDB() {
-                // Set the API key
-                var APIKey = "7c2207b398a6d440727425799edd2f6f";
-
-                // Grab text the user typed into the search input, add to the queryParams object
-                // var ratingOptions = [
-                // {
-                // "results": [
-                // {
-                // "iso_3166_1": "US",
-                // "rating": "TV-MA"
-                // },
-                // {
-                // "iso_3166_1": "CA",
-                // "rating": "18+"
-                // },
-
-                // ],
-                // "id": 1399
-                // }
-                // ]
-                var queryParams = "page=1";
-
-                // queryURL query the API
-                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=" + APIKey + "&language=en-US&" + queryParams;
-                // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
-                // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
-                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/TV-14/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US";
-                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1";
-                // TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US"
-                TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
-
-                // UVURLquery()
-                return TMDBtvqueryURL;
-            };
-
-            function popularTVURLquery() {
-                $.ajax({
-                    url: "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1",
-                    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
-                    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-                    dataType: "json",
-                    method: "GET",
-                }).then(function (TMDBresponseTV) {
-                    console.log(TMDBresponseTV);
+        var TMDBtvqueryURL = "";
+        var TMDBresponseTV = "";
+        var genreList =[];
+        var TMDBnameid = [];
+        
+        //on page load items
+        $(document).ready()
+        {
+            buildQueryTMDB()
 
 
-                })
-            }
-            popularTVURLquery();
+        };
 
-        // };
+
+        $("#genraDropDown").on("change",function(){
+        //Getting Value
+        var selValue = $("#genraDropDown").val();
+        //Setting Value
+        // $("#").val(selValue);
+        console.log("YOU selected value:    " + selValue)
+    });
+
+        //function to build the URL used to make the API request.
+        function buildQueryTMDB() {
+            // Set the API key
+            var APIKey = "7c2207b398a6d440727425799edd2f6f";
+
+            // Grab text the user typed into the search input, add to the queryParams object
+            // var ratingOptions = [
+            // {
+            // "results": [
+            // {
+            // "iso_3166_1": "US",
+            // "rating": "TV-MA"
+            // },
+            // {
+            // "iso_3166_1": "CA",
+            // "rating": "18+"
+            // },
+
+            // ],
+            // "id": 1399
+            // }
+            // ]
+            var queryParams = "&language=en-US&page=1";
+
+            // queryURL query the API
+            
+            // movieGenreURL = https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+            // tvByIDURL = https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/TV-14/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US";
+            
+            
+            // popularURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
+            // contentRatingsURL = "https://api.themoviedb.org/3/tv/69050/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
+            TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f" + queryParams;
+
+            // UVURLquery()
+            return TMDBtvqueryURL;
+        };
+
+        //function to query TMBD genre API
+        function popularTVURLquery() {
+            $.ajax({
+                url: TMDBtvqueryURL,
+                data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
+                header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+                dataType: "json",
+                method: "GET",
+            }).then(function (TMDBresponseTV) {
+                console.log(TMDBresponseTV);
+                // pushes the response into array genrelist
+                var TMBgenre = TMDBresponseTV.genres
+                for (let i = 0; i < TMDBresponseTV.genres.length; i++) {
+                    genreList.push(TMBgenre[i]);
+                    
+                }
+                
+                //create li to view ID and Name for each genre
+                for (let i = 0; i < genreList.length; i++) {
+                    var TMDBid = genreList[i].id;
+                    var TMDBname = genreList[i].name;
+                    var idName = TMDBid + ":  " + TMDBname;
+                    TMDBnameid.push(idName);
+                    $("#myList").append('<li>' + idName + '</li>');
+                    //create drop down, id for each, and value for each item in drop down.
+                    $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
+                    
+
+                }
+                //create drop down list of names base don the dd# id created.
+                for (let i = 0; i < genreList.length; i++) {
+                    var TMDBname = genreList[i].name;
+                    $("#dd" + i ).text(TMDBname);
+                    
+                }
+                
+
+
+
+
+            })
+        }
+        popularTVURLquery();
+
+
 
 
     </script>
