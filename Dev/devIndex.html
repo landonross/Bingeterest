@@ -86,6 +86,38 @@
         // };
 
 
+        function ratings() {
+    $.ajax({
+        url: "https://api.themoviedb.org/3/tv/top_rated?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1",
+        data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
+        header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+        dataType: "json",
+        method: "GET",
+    }).then(function (topRated) {
+        console.log(topRated);
+        })
+
+}   
+ratings();
+
+
+    function newShows(){
+        $.ajax({
+        url: "https://api.themoviedb.org/3/tv/85271/images?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US",
+        data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
+        header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+        dataType: "json",
+        method: "GET",
+    }).then(function (newShows) {
+        console.log(newShows);
+        })
+    }
+    newShows()
+ 
+
+
+
+
     </script>
 
     <!-- Optional JavaScript -->
