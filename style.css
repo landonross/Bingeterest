@@ -1,0 +1,16 @@
+#nav{
+    height: 120px;
+    background-image:url("videoblocks-abstract-computer-animated-background-with-small-glowing-particles-of-blue-color-falling-from-above-against-black-background_hbwcdrnlz_thumbnail-1080_01.png");
+    font-family: 'Abril Fatface', cursive;
+
+}
+
+
+body{
+    background-color: #00004d;
+}
+
+
+.card-container{
+    background-color: #80deea;
+}
