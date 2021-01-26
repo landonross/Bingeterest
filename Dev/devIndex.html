@@ -29,53 +29,61 @@
     <!-- <script src="JS/jquery.twbsPagination.js"></script> -->
     <script>
 
-        function buildQueryTMDB() {
-            // Set the API key
-            var APIKey = "7c2207b398a6d440727425799edd2f6f";
+        // TMDBtvqueryURL = "";
+        // $(document).ready()
+        // {
+            function buildQueryTMDB() {
+                // Set the API key
+                var APIKey = "7c2207b398a6d440727425799edd2f6f";
 
-            // Grab text the user typed into the search input, add to the queryParams object
-            // var ratingOptions = [
-            // {
-            // "results": [
-            // {
-            // "iso_3166_1": "US",
-            // "rating": "TV-MA"
-            // },
-            // {
-            // "iso_3166_1": "CA",
-            // "rating": "18+"
-            // },
+                // Grab text the user typed into the search input, add to the queryParams object
+                // var ratingOptions = [
+                // {
+                // "results": [
+                // {
+                // "iso_3166_1": "US",
+                // "rating": "TV-MA"
+                // },
+                // {
+                // "iso_3166_1": "CA",
+                // "rating": "18+"
+                // },
 
-            // ],
-            // "id": 1399
-            // }
-            // ]
-            var queryParams = "page=1";
+                // ],
+                // "id": 1399
+                // }
+                // ]
+                var queryParams = "page=1";
 
-            // queryURL query the API
-            // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=" + APIKey + "&language=en-US&" + queryParams;
-            // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
-            // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
-            TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/TV-14/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US";
+                // queryURL query the API
+                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=" + APIKey + "&language=en-US&" + queryParams;
+                // https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US
+                // https://api.themoviedb.org/3/tv/{tv_id}?api_key=<<api_key>>&language=en-US
+                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/TV-14/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US";
+                // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1";
+                // TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US"
+                TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
 
-            // UVURLquery()
-            return TMDBtvqueryURL;
-        };
+                // UVURLquery()
+                return TMDBtvqueryURL;
+            };
 
-        function popularTVURLquery() {
-            $.ajax({
-                url: "https://api.themoviedb.org/3/tv/TV-14/content_ratings?=en-US",
-                data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
-                header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-                dataType: "json",
-                method: "GET",
-            }).then(function (TMDBresponseTV) {
-                console.log(TMDBresponseTV);
+            function popularTVURLquery() {
+                $.ajax({
+                    url: "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1",
+                    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
+                    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+                    dataType: "json",
+                    method: "GET",
+                }).then(function (TMDBresponseTV) {
+                    console.log(TMDBresponseTV);
 
 
-            })
-        }
-        popularTVURLquery();
+                })
+            }
+            popularTVURLquery();
+
+        // };
 
 
     </script>
