@@ -57,6 +57,17 @@
 
 
         };
+
+
+        $("#genraDropDown").on("change",function(){
+        //Getting Value
+        var selValue = $("#genraDropDown").val();
+        //Setting Value
+        // $("#textFieldValueJQ").val(selValue);
+        console.log("YOU selected value:    " + selValue)
+    });
+
+
         function buildQueryTMDB() {
             // Set the API key
             var APIKey = "7c2207b398a6d440727425799edd2f6f";
@@ -78,7 +89,7 @@
             // "id": 1399
             // }
             // ]
-            var queryParams = "page=1";
+            var queryParams = "&language=en-US&page=1";
 
             // queryURL query the API
             // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=" + APIKey + "&language=en-US&" + queryParams;
@@ -89,7 +100,7 @@
             // TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US"
             // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
             // TMDBtvqueryURL = "https://api.themoviedb.org/3/tv/69050/content_ratings?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
-            TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f&language=en-US&page=1"
+            TMDBtvqueryURL = "https://api.themoviedb.org/3/genre/tv/list?api_key=7c2207b398a6d440727425799edd2f6f" + queryParams;
 
             // UVURLquery()
             return TMDBtvqueryURL;
@@ -118,13 +129,14 @@
                     var idName = TMDBid + ":  " + TMDBname;
                     TMDBnameid.push(idName);
                     $("#myList").append('<li>' + idName + '</li>');
-                    $("#genraDropDown").append("<option id=dd" + i + " value=" + i + "></option>")
+                    $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
                     
 
                 }
 
                 for (let i = 0; i < genreList.length; i++) {
-                    $("#dd" + i ).text(TMDBnameid[i]);
+                    var TMDBname = genreList[i].name;
+                    $("#dd" + i ).text(TMDBname);
                     
                 }
                 
