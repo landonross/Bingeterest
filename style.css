@@ -29,7 +29,7 @@ body{
     background-color: #80deea;
 }
 
-#teal-btn{
+/* #teal-btn{
     background-color: #80deea;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
@@ -42,8 +42,22 @@ body{
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
 
+} */
+
+#genreBtn{
+    background-color:#80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+
 }
 
+#movieSearch{
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
+ 
 
 /* mission page css */
 
@@ -66,4 +80,25 @@ body{
 
 
    
-        
+/* Contact page css         */
+
+.contactContainer{
+    background-color:#80deea;
+    color: #00004d;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+.center-align{
+    color:white;
+
+}
+
+#cBtn{
+    background-color: #80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
+
