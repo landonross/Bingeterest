@@ -154,15 +154,33 @@ function genreTVURLquery() {
       var TMDBname = genreList[i].name;
       var idName = TMDBid + ":  " + TMDBname;
       TMDBnameid.push(idName);
-      $("#dropdown1").append('<li value="aa' + TMDBid + '">' + TMDBname + '</li>');
-      $("#dropdown2").append('<li value="bb' + TMDBid + '">' + TMDBname + '</li>');
       //create drop down, id for each, and value for each item in drop down.
-      // $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
+      $("#genraDropDown1").append("<option id=1dd" + i + " value=" + TMDBid + "></option>")
+      $("#genraDropDown2").append("<option id=2dd" + i + " value=" + TMDBid + "></option>")
     }
+
+    //create drop down list of names base don the dd# id created.
+    for (let i = 0; i < genreList.length; i++) {
+      var TMDBname = genreList[i].name;
+      $("#1dd" + i).text(TMDBname);
+    }
+
+    for (let i = 0; i < genreList.length; i++) {
+      var TMDBname = genreList[i].name;
+      $("#2dd" + i).text(TMDBname);
+    }
+
+
 
   })
 }
+
 genreTVURLquery();
+$("#genraDropDown1").on("click change", function(e) {
+    var DD1Selected = $(this).val();
+    console.log(DD1Selected);
+})
+$('select>option:eq(3)').prop('selected', true);
 
 //Function to grab and store Popular TV items
 function TVURLquery() {

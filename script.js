@@ -4,7 +4,7 @@
 // //     data: "Ratings",
 // //     dataType: "json",
 // //     success: function (data) {
-        
+
 
 // //         console.log(data)
 // //     }
@@ -25,28 +25,14 @@
 // }   
 // ratings()
 
-  // Or with jQuery
+// Or with jQuery
 
 
 var genre1 = [];
-var genre2 ="";
+var genre2 = "";
 var dropDownNumber = "";
 
 function dropDownNum() {
     dropDownNumber = $(this);
 }
 
-  $('.dropdown-trigger').dropdown(dropDownNum);
-
-  $("li").on("click", function(){
-      var thisButton = this.id;
-      var thisText = thisButton.text;
-      var thisValue = thisButton.value;
-    //   var thisItem = $(this).value();
-      $(dropDownNumber).text(thisText);
-    genre1.push(thisitem);
-    if (genre1.length > 2) {
-        genre1.splice(0, genre1.length);
-
-    }
-  })
