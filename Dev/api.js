@@ -26,8 +26,8 @@
 //     }
 //     newShows()
  
-        var tvName = "Family Guy"
-        var movieName = "IronMan"
+        var tvName = "The Simpsons"
+        var movieName = "DeadPool"
     function searchShow(){
         
         $.ajax({
@@ -251,7 +251,7 @@ TVURLquery()
         </div>
           `)
 
-
+          
 
          
              
@@ -271,3 +271,4 @@ TVURLquery()
       
   } 
   searchMovie()
+ 
