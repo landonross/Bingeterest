@@ -28,3 +28,7 @@
   // Or with jQuery
 
   $('.dropdown-trigger').dropdown();
+
+  $(document).ready(function(){
+    $('select').formSelect();
+  });
