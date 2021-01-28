@@ -183,28 +183,43 @@
             // }
         })
     }
-    genreTVURLquery();
 
-    //Function to grab and store Popular TV items
-    function TVURLquery() {
-        $.ajax({
-            url: TMDBtvPopqueryURL,
-            data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
-            header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-            dataType: "json",
-            method: "GET",
-        }).then(function (TMDBresponseTV) {
-            console.log(TMDBresponseTV);
-            // pushes the response into array genrelist
-            var TMBpopTV = TMDBresponseTV.results
-            for (let i = 0; i < TMDBresponseTV.results.length; i++) {
-                popTVList.push(TMBpopTV[i]);
-
-            }
-        })
+    //create li to view ID and Name for each genre
+    for (let i = 0; i < genreList.length; i++) {
+      var TMDBid = genreList[i].id;
+      var TMDBname = genreList[i].name;
+      var idName = TMDBid + ":  " + TMDBname;
+      TMDBnameid.push(idName);
+      $("#dropdown1").append('<li value="aa' + TMDBid + '">' + TMDBname + '</li>');
+      $("#dropdown2").append('<li value="bb' + TMDBid + '">' + TMDBname + '</li>');
+      //create drop down, id for each, and value for each item in drop down.
+      // $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
     }
-    TVURLquery()
- 
+
+  
+
+genreTVURLquery();
+
+//Function to grab and store Popular TV items
+function TVURLquery() {
+  $.ajax({
+    url: TMDBtvPopqueryURL,
+    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
+    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+    dataType: "json",
+    method: "GET",
+  }).then(function (TMDBresponseTV) {
+    console.log(TMDBresponseTV);
+    // pushes the response into array genrelist
+    var TMBpopTV = TMDBresponseTV.results
+    for (let i = 0; i < TMDBresponseTV.results.length; i++) {
+      popTVList.push(TMBpopTV[i]);
+
+    }
+  })
+}
+TVURLquery()
+
 
     function searchMovie(){
         
