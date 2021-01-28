@@ -2,22 +2,32 @@
 <html lang="en">
 
 <head>
-    <title>Bingeterest</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bingeterest</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<<<<<<< HEAD
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="style.css">
+=======
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&family=Orbitron:wght@900&display=swap" rel="stylesheet">
+>>>>>>> 820160cf64a5dad000ed035842d368d5b28ed105
 </head>
 
 <body>
   <nav id="nav">
     <div class="nav-wrapper">
+<<<<<<< HEAD
+      <a class="brand-logo">Bingeterest</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+=======
       <a class="brand-logo left">Bingeterest</a>
       <ul id="nav-mobile" class="right">
+>>>>>>> 820160cf64a5dad000ed035842d368d5b28ed105
         <li><a href="index.html">Home</a></li>
         <li><a href="mission.html">Our Mission</a></li>
         <li><a href="contact.html">Contact us</a></li>
@@ -25,29 +35,52 @@
     </div>
   </nav>
 
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="first_name" type="text" class="validate">
-              <label for="first_name">First Name</label>
+  <div class="container">
+    <div class="row">
+      <div class="col m10 offset-m1 s12">
+        <h1 class="center-align">Contact Form</h1>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col m6 s12 +">
+                <input id="first_name" type="text" class="validate">
+                <label for="first_name">First Name</label>
+              </div>
+              <div class="input-field col m6 s12">
+                <input id="last_name" type="text" class="validate">
+                <label for="last_name">Last Name</label>
+              </div>
             </div>
-            <div class="input-field col s6">
-              <input id="last_name" type="text" class="validate">
-              <label for="last_name">Last Name</label>
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input id="email" type="email" class="validate">
-              <label for="email">Email</label>
-            </div>
-          </div>
-        </form>
-      </div>
+            <div class="section">
+              <div class="row">
+                <div class="input-field col offset-s4 s4">
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Email</label>
+                </div>
+              </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="script.js"></script>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="message" class="materialize-textarea"></textarea>
+          <label for="message">Message</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col m12">
+     <p class="center-align"><button class="btn btn-large waves-effect waves-light" type="submit" class="btn btn-primary">Submit</button></p>
+    </div>
+  
+  </div>
+  </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
