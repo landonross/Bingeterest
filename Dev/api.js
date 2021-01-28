@@ -26,9 +26,9 @@
 //     }
 //     newShows()
  
-
+        var tvName = "The Simpsons"
     function searchShow(){
-        var tvName = "Family Guy"
+        
         $.ajax({
         url: "https://api.themoviedb.org/3/search/tv?query="+tvName+"&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
         data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
@@ -39,7 +39,7 @@
         console.log(tvShow);
 
           for (let i = 0; i < tvShow.results.length; i++) {
-
+            
             $(".cardDisplay").append(`
             <div class="col m4">
             <div class="card small" style="width: 200px;">
