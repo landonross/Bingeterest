@@ -26,8 +26,8 @@
 //     }
 //     newShows()
  
-        var tvName = "The Simpsons"
-        var movieName = "DeadPool"
+        var tvName = "Family Guy"
+        var movieName = "Dark Night"
     function searchShow(){
         
         $.ajax({
@@ -78,7 +78,7 @@
         
     }
     searchShow();
-    searchShow()
+    
 
     //popular 
     var TMDBtvPopqueryURL = "";
