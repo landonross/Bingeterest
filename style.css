@@ -27,15 +27,38 @@ body{
 
 .card-container{
     background-color: #80deea;
+    display: table;
 }
 
-#teal-btn{
+/* #teal-btn{
     background-color: #80deea;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
     
 }
 
+#dropMe{
+    background-color: white;
+    color:#00004d;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+
+} */
+
+#genreBtn{
+    background-color:#80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+#movieSearch{
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
+ 
 
 /* mission page css */
 
@@ -46,12 +69,56 @@ body{
     width: 960px;
     margin:auto;
     margin-top: 100px;
+    margin-bottom: 0;
     padding: 45px;
     color: #00004d;
     border: dotted;
 
 }
 
+.m2 {
+    display: table;
+}
+
 
    
-        
+/* Contact page css         */
+
+.contactContainer{
+    background-color:#80deea;
+    color: #00004d;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+
+}
+
+.center-align{
+    color:white;
+
+}
+
+#cBtn{
+    background-color: #80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+#genraDropDown {
+    background-color: #80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+.input-field [type=text] {
+    color: white;
+}
+
+.input-field {
+    margin-left: 4%;
+    width: 45%;
+}
+

@@ -4,7 +4,7 @@
 // //     data: "Ratings",
 // //     dataType: "json",
 // //     success: function (data) {
-        
+
 
 // //         console.log(data)
 // //     }
@@ -25,6 +25,14 @@
 // }   
 // ratings()
 
-  // Or with jQuery
+// Or with jQuery
 
-  $('.dropdown-trigger').dropdown();
+
+var genre1 = [];
+var genre2 = "";
+var dropDownNumber = "";
+
+function dropDownNum() {
+    dropDownNumber = $(this);
+}
+
