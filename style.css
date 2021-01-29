@@ -110,3 +110,11 @@ body{
     
 }
 
+.input-field [type=text] {
+    color: white;
+}
+
+.input-field {
+    margin-left: 4%;
+    width: 45%;
+}
