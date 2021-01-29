@@ -40,7 +40,7 @@ function searchShow() {
 
     for (let i = 0; i < tvShow.results.length; i++) {
 
-      $(".cardDisplay").append(`
+      $("#cardContainer").append(`
             <div class="col m4">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
@@ -92,34 +92,13 @@ $(document).ready()
   buildTVPopQueryTMDB()
   $('select').formSelect();
   // $("select").material_select();
-  $("select").click( function () {
+  $("select").click(function () {
     // 1) setup listener for custom event to re-initialize on change
     $(this).material_select('update');
   });
 
 };
 
-// $(function () {
-//   $(".mSelect").material_select();
-
-//   $(".mSelect").on("contentChanged", function () {
-//     // 1) setup listener for custom event to re-initialize on change
-//     $(this).material_select();
-//   });
-
-// });
-
-// 2b) Manually do this --> trigger custom event
-
-
-
-// $("#genraDropDown").on("change", function () {
-//   //Getting Value
-//   var selValue = $("#genraDropDown").val();
-//   //Setting Value
-//   // $("#").val(selValue);
-//   console.log("YOU selected value:    " + selValue)
-// });
 
 //function to build the URL used to make the API request for genera ID's and names.
 function buildGenreQueryTMDB() {
@@ -165,57 +144,42 @@ function genreTVURLquery() {
       genreList.push(TMBgenre[i]);
 
     }
-
-    //create li to view ID and Name for each genre
-    for (let i = 0; i < genreList.length; i++) {
-      var TMDBid = genreList[i].id;
-      var TMDBname = genreList[i].name;
-      var idName = TMDBid + ":  " + TMDBname;
-      TMDBnameid.push(idName);
-      //create drop down, id for each, and value for each item in drop down.
-      $("#genreDropDown1").append("<option id=1dd" + i + " value=" + TMDBid + "></option>")
-      $("#genreDropDown2").append("<option id=2dd" + i + " value=" + TMDBid + "></option>")
-      $("#genreDropDown2").trigger('contentChanged');
-    }
-
-    //create drop down list of names base don the dd# id created.
-    for (let i = 0; i < genreList.length; i++) {
-      var TMDBname = genreList[i].name;
-      $("#1dd" + i).text(TMDBname);
-    }
-
-    for (let i = 0; i < genreList.length; i++) {
-      var TMDBname = genreList[i].name;
-      $("#2dd" + i).text(TMDBname);
-      $("#genreDropDown2").trigger('contentChanged');
-    }
-
-
-
   })
 }
 
-genreTVURLquery();
-//Drop Down function
-
-// $("#genreDropDown2").click(function () {
-//   $select = $('<select />').attr('id', 'converted_dropdown_' + (index + 1));
-//   var DD1Selected = $("genreDropDown2").val();
-//   console.log(DD1Selected);
-// })
-// $('select>option:eq(3)').prop('selected', true);
-
-// $("#genreDropDown").on("change", function () {
-//   //Getting Value
-//   var selValue = $("#genreDropDown").val();
-//   //Setting Value
-//   // $("#").val(selValue);
-//   console.log("YOU selected value:    " + selValue)
-// });
-
 $('.dropdown-trigger').dropdown();
 
+function createTVCard() {
+  var TVID = "";
+  var TVName = "";
+  var posterPath = "";
+  var showGenre = [];
+  var showOverview = "";
+  var tvStreamURL = "";
+  for (let i = 0; i < popTVList.length; i++) {
+    TVID = popTVList[i].id;
+    TVName = popTVList[i].name;
+    posterPath = popTVList[i].poster_path;
+    showGenre.push(popTVList[i].genre_ids);
+    showOverview = popTVList[i].overview;
 
+    $("#cardContainer").append(`
+            <div id="${TVID}" data-genre="${JSON.stringify(showGenre)}class="card small" style="width: 200px;">
+              <div class="card-image">
+                <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
+                <span class="card-title">${TVName}</span>
+              </div>
+              <div class="card-content">
+                <p>${showOverview}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+            `)
+
+  }
+}
 
 //Function to grab and store Popular TV items
 function TVURLquery() {
