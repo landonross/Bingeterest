@@ -164,7 +164,7 @@ function createTVCard() {
     showOverview = popTVList[i].overview;
 
     $("#cardContainer").append(`
-            <div id="${TVID}" data-genre="${JSON.stringify(showGenre)}class="card small" style="width: 200px;">
+            <div id="${TVID}" data-genre="${JSON.stringify(showGenre)}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
                 <span class="card-title">${TVName}</span>
