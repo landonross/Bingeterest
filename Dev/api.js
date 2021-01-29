@@ -162,9 +162,11 @@ function createTVCard() {
     posterPath = popTVList[i].poster_path;
     showGenre.push(popTVList[i].genre_ids);
     showOverview = popTVList[i].overview;
+    xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div id="${TVID}" data-genre="${JSON.stringify(showGenre)}" class="card small" style="width: 200px;">
+            <div class="col m2">
+            <div id="${TVID}" data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
                 <span class="card-title">${TVName}</span>
@@ -177,8 +179,9 @@ function createTVCard() {
               </div>
             </div>
             `)
-
+            showGenre.splice(0, showGenre.length)
   }
+
 }
 
 //Function to grab and store Popular TV items
