@@ -95,13 +95,13 @@ $(document).ready()
 };
 
 
-$("#genraDropDown").on("change", function () {
-  //Getting Value
-  var selValue = $("#genraDropDown").val();
-  //Setting Value
-  // $("#").val(selValue);
-  console.log("YOU selected value:    " + selValue)
-});
+// $("#genraDropDown").on("change", function () {
+//   //Getting Value
+//   var selValue = $("#genraDropDown").val();
+//   //Setting Value
+//   // $("#").val(selValue);
+//   console.log("YOU selected value:    " + selValue)
+// });
 
 //function to build the URL used to make the API request for genera ID's and names.
 function buildGenreQueryTMDB() {
@@ -155,8 +155,8 @@ function genreTVURLquery() {
       var idName = TMDBid + ":  " + TMDBname;
       TMDBnameid.push(idName);
       //create drop down, id for each, and value for each item in drop down.
-      $("#genraDropDown1").append("<option id=1dd" + i + " value=" + TMDBid + "></option>")
-      $("#genraDropDown2").append("<option id=2dd" + i + " value=" + TMDBid + "></option>")
+      $("#genreDropDown1").append("<option id=1dd" + i + " value=" + TMDBid + "></option>")
+      $("#genreDropDown2").append("<option id=2dd" + i + " value=" + TMDBid + "></option>")
     }
 
     //create drop down list of names base don the dd# id created.
@@ -176,11 +176,16 @@ function genreTVURLquery() {
 }
 
 genreTVURLquery();
-$("#genraDropDown1").on("click change", function(e) {
-    var DD1Selected = $(this).val();
-    console.log(DD1Selected);
+//Drop Down function
+
+$("#genreDropDown2").click(function () {
+  $select = $('<select />').attr('id', 'converted_dropdown_' + (index + 1));
+  var DD1Selected = $("genreDropDown2").val();
+  console.log(DD1Selected);
 })
 $('select>option:eq(3)').prop('selected', true);
+
+
 
 //Function to grab and store Popular TV items
 function TVURLquery() {
