@@ -40,7 +40,7 @@ function searchShow() {
 
     for (let i = 0; i < tvShow.results.length; i++) {
 
-      $(".cardDisplay").append(`
+      $("#cardContainer").append(`
             <div class="col m4">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
@@ -90,18 +90,15 @@ $(document).ready()
 {
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
-
+  $('select').formSelect();
+  // $("select").material_select();
+  $("select").click(function () {
+    // 1) setup listener for custom event to re-initialize on change
+    $(this).material_select('update');
+  });
 
 };
 
-
-$("#genraDropDown").on("change", function () {
-  //Getting Value
-  var selValue = $("#genraDropDown").val();
-  //Setting Value
-  // $("#").val(selValue);
-  console.log("YOU selected value:    " + selValue)
-});
 
 //function to build the URL used to make the API request for genera ID's and names.
 function buildGenreQueryTMDB() {
@@ -147,22 +144,42 @@ function genreTVURLquery() {
       genreList.push(TMBgenre[i]);
 
     }
-
-    //create li to view ID and Name for each genre
-    for (let i = 0; i < genreList.length; i++) {
-      var TMDBid = genreList[i].id;
-      var TMDBname = genreList[i].name;
-      var idName = TMDBid + ":  " + TMDBname;
-      TMDBnameid.push(idName);
-      $("#dropdown1").append('<li value="aa' + TMDBid + '">' + TMDBname + '</li>');
-      $("#dropdown2").append('<li value="bb' + TMDBid + '">' + TMDBname + '</li>');
-      //create drop down, id for each, and value for each item in drop down.
-      // $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
-    }
-
   })
 }
-genreTVURLquery();
+
+$('.dropdown-trigger').dropdown();
+
+function createTVCard() {
+  var TVID = "";
+  var TVName = "";
+  var posterPath = "";
+  var showGenre = [];
+  var showOverview = "";
+  var tvStreamURL = "";
+  for (let i = 0; i < popTVList.length; i++) {
+    TVID = popTVList[i].id;
+    TVName = popTVList[i].name;
+    posterPath = popTVList[i].poster_path;
+    showGenre.push(popTVList[i].genre_ids);
+    showOverview = popTVList[i].overview;
+
+    $("#cardContainer").append(`
+            <div id="${TVID}" data-genre="${JSON.stringify(showGenre)}class="card small" style="width: 200px;">
+              <div class="card-image">
+                <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
+                <span class="card-title">${TVName}</span>
+              </div>
+              <div class="card-content">
+                <p>${showOverview}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+            `)
+
+  }
+}
 
 //Function to grab and store Popular TV items
 function TVURLquery() {
