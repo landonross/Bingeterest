@@ -26,7 +26,7 @@
 //     }
 //     newShows()
  
-        var tvName = "Family Guy"
+        var tvName = "The Simpsons"
         var movieName = "Dark Night"
     function searchShow(){
         
