@@ -103,32 +103,21 @@ body{
     font-family: 'Orbitron', sans-serif;
 }
 
-/* Drop down lists */
-/* .genraCategories{
-    font-size: 13px;
-    padding: 10px 8px 10px 14px;
-    background: #fff;
-    color: black;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
-  } */
 
-  /* .genraCategories .select{
-    width: 120%;
-    background:url('arrow.png') no-repeat;
-    background-position:80% center;
-  }
-  
-  .genraCategories .select select{
-    background: transparent;
-    line-height: 1;
-    border: 0;
-    padding: 0;
-    border-radius: 0;
-    width: 120%;
-    position: relative;
-    z-index: 10;
-    font-size: 1em;
-  } */
+#genraDropDown {
+    background-color: #80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+.input-field [type=text] {
+    color: white;
+}
+
+.input-field {
+    margin-left: 4%;
+    width: 45%;
+}
+
