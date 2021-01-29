@@ -90,9 +90,27 @@ $(document).ready()
 {
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
-
+  $('select').formSelect();
+  // $("select").material_select();
+  $("select").click( function () {
+    // 1) setup listener for custom event to re-initialize on change
+    $(this).material_select('update');
+  });
 
 };
+
+// $(function () {
+//   $(".mSelect").material_select();
+
+//   $(".mSelect").on("contentChanged", function () {
+//     // 1) setup listener for custom event to re-initialize on change
+//     $(this).material_select();
+//   });
+
+// });
+
+// 2b) Manually do this --> trigger custom event
+
 
 
 // $("#genraDropDown").on("change", function () {
@@ -157,6 +175,7 @@ function genreTVURLquery() {
       //create drop down, id for each, and value for each item in drop down.
       $("#genreDropDown1").append("<option id=1dd" + i + " value=" + TMDBid + "></option>")
       $("#genreDropDown2").append("<option id=2dd" + i + " value=" + TMDBid + "></option>")
+      $("#genreDropDown2").trigger('contentChanged');
     }
 
     //create drop down list of names base don the dd# id created.
@@ -168,6 +187,7 @@ function genreTVURLquery() {
     for (let i = 0; i < genreList.length; i++) {
       var TMDBname = genreList[i].name;
       $("#2dd" + i).text(TMDBname);
+      $("#genreDropDown2").trigger('contentChanged');
     }
 
 
@@ -178,12 +198,22 @@ function genreTVURLquery() {
 genreTVURLquery();
 //Drop Down function
 
-$("#genreDropDown2").click(function () {
-  $select = $('<select />').attr('id', 'converted_dropdown_' + (index + 1));
-  var DD1Selected = $("genreDropDown2").val();
-  console.log(DD1Selected);
-})
-$('select>option:eq(3)').prop('selected', true);
+// $("#genreDropDown2").click(function () {
+//   $select = $('<select />').attr('id', 'converted_dropdown_' + (index + 1));
+//   var DD1Selected = $("genreDropDown2").val();
+//   console.log(DD1Selected);
+// })
+// $('select>option:eq(3)').prop('selected', true);
+
+// $("#genreDropDown").on("change", function () {
+//   //Getting Value
+//   var selValue = $("#genreDropDown").val();
+//   //Setting Value
+//   // $("#").val(selValue);
+//   console.log("YOU selected value:    " + selValue)
+// });
+
+$('.dropdown-trigger').dropdown();
 
 
 
