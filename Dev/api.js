@@ -41,18 +41,18 @@ function searchShow() {
     for (let i = 0; i < tvShow.results.length; i++) {
 
       $("#cardContainer").append(`
-            <div class="col m2">
+            <div class="col m2" style="display: table;">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${tvShow.results[i].poster_path}">
-                <span class="card-title">${tvShow.results[i].original_name}</span>
+                <span class="card-title"></span>
               </div>
-              <div class="card-content">
-                <p>${tvShow.results[i].overview}</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
+              <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">${tvShow.results[i].original_name}</div>
+                <div class="collapsible-body"><span>${tvShow.results[i].overview}</span></div>
+              </li>
+              </ul>
             </div>
           </div>
             `)
@@ -97,8 +97,8 @@ $(document).ready()
   //materialize recommended
   $('select').formSelect();
   $('select').select();
-  
-    $("select").click(function () {
+
+  $("select").click(function () {
     // 1) setup listener for custom event to re-initialize on change
     $(this).material_select('update');
   });
@@ -110,24 +110,24 @@ $(document).ready()
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
-$("select").change(function() {
+$("select").change(function () {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
-  genreSelectionArray.push($('select#genreSelection').val()); 
+  genreSelectionArray.push($('select#genreSelection').val());
 
   unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
 
 //function to hide items
-function hideItem(i,item) {
+function hideItem(i, item) {
   return $(item).hide();
 }
 function hideItemsWithIDs(ids) {
   $(ids.join()).each(hideItem);
 }
 
-function unHideItem(i,item) {
+function unHideItem(i, item) {
   return $(item).hide();
 }
 function unHideItemsWithIDs(ids) {
@@ -221,24 +221,35 @@ function createTVCard() {
     xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div class="col m2" id="${TVID}">
+
+            <div class="col m2" id="${TVID}" style="display: table;">
             <div data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
-                <span class="card-title">${TVName}</span>
+                <span class="card-title"></span>
               </div>
-              <div class="card-content">
-                <p>${showOverview}</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
+              <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">${TVName}</div>
+                <div class="collapsible-body"><span>${showOverview}</span></div>
+              </li>
+              </ul>
+            </div>
             </div>
             `)
-            showGenre.splice(0, showGenre.length)
+    showGenre.splice(0, showGenre.length)
+
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+    });
   }
 
 }
 
 
-
+{/* <div class="card-content">
+<p>${showOverview}</p>
+</div>
+<div class="card-action">
+<il>${TVName}</il>
+</div> */}
