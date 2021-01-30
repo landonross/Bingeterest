@@ -28,24 +28,24 @@
 
 
 
-  function searchShow() {
-    $("#searchBtn").click(function () {
-      hideAllItemsByIDs()
-      var tvShow = $("#icon_prefix2").val();
-    
-  var tvName = ""
-  $.ajax({
-    url: "https://api.themoviedb.org/3/search/tv?query=" + tvShow + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
-    data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-    dataType: "json",
-    method: "GET",
-  }).then(function (tvShow) {
-    console.log(tvShow);
+function searchShow() {
+  $("#searchBtn").click(function () {
+    hideAllItemsByIDs()
+    var tvShow = $("#icon_prefix2").val();
 
-    for (let i = 0; i < tvShow.results.length; i++) {
+    var tvName = ""
+    $.ajax({
+      url: "https://api.themoviedb.org/3/search/tv?query=" + tvShow + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
+      data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
+      header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+      dataType: "json",
+      method: "GET",
+    }).then(function (tvShow) {
+      console.log(tvShow);
 
-      $("#cardContainer").append(`
+      for (let i = 0; i < tvShow.results.length; i++) {
+
+        $("#cardContainer").append(`
             <div class="col m2" style="display: table;">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
@@ -62,17 +62,17 @@
           </div>
             `)
 
-      // $.ajax({
-      //     url:"https://api.themoviedb.org/3/tv/"+tvShow.results[i].id+"/images?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US",
-      //     data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-      //    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-      //    dataType: "json",
-      //    method: "GET",
-      // }).then(function(images){
-      //     console.log(images)
-      // })
-    }
-  })
+        // $.ajax({
+        //     url:"https://api.themoviedb.org/3/tv/"+tvShow.results[i].id+"/images?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US",
+        //     data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
+        //    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+        //    dataType: "json",
+        //    method: "GET",
+        // }).then(function(images){
+        //     console.log(images)
+        // })
+      }
+    })
 
   })
 }
@@ -115,6 +115,18 @@ $(document).ready()
 };
 
 //Button Listeners
+// function searchShow() {
+  $("#genreBtn").click(function () {
+    console.log("clicked");
+    if (genreSelectionArray[0].length <= 2) {
+      hideAllItemsByIDs();
+      searchArryObject();
+    } else {
+      
+    }
+  })
+// }
+
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
@@ -125,9 +137,7 @@ $("select").on("change", function () {
   var $selectDropdown = $("#genreSelection");
   $selectDropdown.trigger('contentChanged');
 
-  if (genreSelectionArray.length === 2) {
-    hideAllItemsByIDs();
-  }
+
   // unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
@@ -143,22 +153,22 @@ function hideAllItemsByIDs() {
     // console.log(tvlist);
     $(tvlist).addClass("hide");
   }
-  for (let i = 0; i < genreSelectionArray.length; i++) {
-    $()
-  }
+  // for (let i = 0; i < genreSelectionArray.length; i++) {
+  //   $()
+  // }
 }
 //|| popTVList[i].genre_ids[i] == genreSelectionArray[1])
 function searchArryObject() {
   unHideSelectedTV = [];
   for (let i = 0; i < popTVList.length; i++) {
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
-      if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][0]) {
         unHideSelectedTV.push(popTVList[i].id);
         console.log("1st found tvID:  " + popTVList[i].id);
       }
     }
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
-      if (popTVList[i].genre_ids[x] == genreSelectionArray[1]) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][1]) {
         unHideSelectedTV.push(popTVList[i].id);
         console.log("2nd found tvID:  " + popTVList[i].id);
 
