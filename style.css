@@ -44,10 +44,25 @@ body{
 }
 
 
+
 .collapsible-body{
     background-color: white;
     z-index: 10;
 }
+
+#TVshow {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    width: 90%;
+}
+
+#searchBtn {
+    position: absolute;
+    left: 99%;
+    top: 15px;
+}
+
 
 /* mission page css */
 
@@ -114,5 +129,3 @@ body{
     font-family: 'Orbitron', sans-serif;
     
 }
-
-
