@@ -84,6 +84,10 @@ var TMDBresponseTVg = "";
 var genreList = [];
 var TMDBnameid = [];
 
+//HTML selected items
+var genreSelectionArray = [];
+var selectResult = [];
+
 
 //on page load items
 $(document).ready()
@@ -91,13 +95,43 @@ $(document).ready()
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
   $('select').formSelect();
+  $('select').select();
   // $("select").material_select();
+  
   $("select").click(function () {
     // 1) setup listener for custom event to re-initialize on change
     $(this).material_select('update');
   });
+  genreSelectionArray.splice(0, genreSelectionArray.length)
 
 };
+
+//Button Listeners
+//Drop down listener
+$('.dropdown-trigger').dropdown();
+//Genre selection submit
+
+$("select").change(function() {
+  console.log($('select#genreSelection').val());
+  genreSelectionArray.shift();
+  genreSelectionArray.push($('select#genreSelection').val());
+  
+  
+
+})
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const selects = document.querySelector("select");
+//   const instances = M.FormSelect.init(selects, {});
+//   const selectOption = document.querySelector("#genreSelection");
+    
+//   selectOption.addEventListener("change", function () {
+//     const instance = M.FormSelect.getInstance(selectOption);
+//     const selectedValues = instance.getSelectedValues();
+//     console.log(selectedValues);
+//   });
+// });
 
 
 //function to build the URL used to make the API request for genera ID's and names.
@@ -147,8 +181,28 @@ function genreTVURLquery() {
   })
 }
 
-$('.dropdown-trigger').dropdown();
+//Function to grab and store Popular TV items
+function TVURLquery() {
+  $.ajax({
+    url: TMDBtvPopqueryURL,
+    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
+    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+    dataType: "json",
+    method: "GET",
+  }).then(function (TMDBresponseTV) {
+    console.log(TMDBresponseTV);
+    // pushes the response into array genrelist
+    var TMBpopTV = TMDBresponseTV.results
+    for (let i = 0; i < TMDBresponseTV.results.length; i++) {
+      popTVList.push(TMBpopTV[i]);
 
+    }
+    createTVCard()
+  });
+}
+TVURLquery()
+
+//creates the Cards from the popular API
 function createTVCard() {
   var TVID = "";
   var TVName = "";
@@ -184,24 +238,5 @@ function createTVCard() {
 
 }
 
-//Function to grab and store Popular TV items
-function TVURLquery() {
-  $.ajax({
-    url: TMDBtvPopqueryURL,
-    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
-    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-    dataType: "json",
-    method: "GET",
-  }).then(function (TMDBresponseTV) {
-    console.log(TMDBresponseTV);
-    // pushes the response into array genrelist
-    var TMBpopTV = TMDBresponseTV.results
-    for (let i = 0; i < TMDBresponseTV.results.length; i++) {
-      popTVList.push(TMBpopTV[i]);
-
-    }
-  })
-}
-TVURLquery()
 
 
