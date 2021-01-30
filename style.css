@@ -42,12 +42,10 @@ body{
 }
 
 
-
 .collapsible-body{
     background-color: white;
     z-index: 10;
 }
-
 #TVshow {
     position: absolute;
     left: 50%;
