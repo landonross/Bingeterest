@@ -42,7 +42,12 @@ body{
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
 }
- 
+
+#tvSearch{
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
 
 
 /* mission page css */
@@ -103,5 +108,12 @@ body{
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
     
+}
+
+#TVshow {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    width: 100%;
 }
 
