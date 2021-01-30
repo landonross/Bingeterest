@@ -32,9 +32,8 @@ var genre1 = [];
 var genre2 = "";
 var dropDownNumber = "";
 
-function dropDownNum() {
-    dropDownNumber = $(this);
-}
+
+
 
   $('.dropdown-trigger').dropdown();
 

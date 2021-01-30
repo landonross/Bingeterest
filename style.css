@@ -27,7 +27,6 @@ body{
 
 .card-container{
     background-color: #80deea;
-    display: table;
 }
 
 /* #teal-btn{
@@ -76,8 +75,9 @@ body{
 
 }
 
-.m2 {
-    display: table;
+#allCards {
+        display: table;
+    
 }
 
 
@@ -104,10 +104,6 @@ body{
     font-family: 'Orbitron', sans-serif;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d1210c18a6bfa75a8dc0999965ac1479c9811f8
 #genraDropDown {
     background-color: #80deea;
     color: white;
@@ -123,9 +119,11 @@ body{
 .input-field {
     margin-left: 4%;
     width: 45%;
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> 5d1210c18a6bfa75a8dc0999965ac1479c9811f8
+#tvSearch{
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+}
+ 
