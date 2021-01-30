@@ -115,6 +115,7 @@ $("select").change(function() {
   genreSelectionArray.shift();
   genreSelectionArray.push($('select#genreSelection').val()); 
 
+  hideItemsWithIDs(toString(genreList));
   unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
