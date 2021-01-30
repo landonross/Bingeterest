@@ -148,13 +148,13 @@ function searchArryObject() {
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
       if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
         unHideSelectedTV.push(popTVList[i].id);
-        console.log("found tvID:  " + popTVList[i].id);
+        console.log("1st found tvID:  " + popTVList[i].id);
       }
     }
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
       if (popTVList[i].genre_ids[x] == genreSelectionArray[1]) {
         unHideSelectedTV.push(popTVList[i].id);
-        console.log("found tvID:  " + popTVList[i].id);
+        console.log("2nd found tvID:  " + popTVList[i].id);
 
       }
     }
