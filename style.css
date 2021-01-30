@@ -27,7 +27,6 @@ body{
 
 .card-container{
     background-color: #80deea;
-    display: table;
 }
 
 /* #teal-btn{
@@ -76,8 +75,9 @@ body{
 
 }
 
-.m2 {
-    display: table;
+#allCards {
+        display: table;
+    
 }
 
 
