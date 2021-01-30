@@ -78,6 +78,7 @@ var TMDBtvPopqueryURL = "";
 var TMDBresponseTV = "";
 var popTVList = [];
 var TMBpopTV = [];
+var allTVIDs = [];
 //Genre
 var TMDBtvGenrequeryURL = "";
 var TMDBresponseTVg = "";
@@ -87,6 +88,7 @@ var TMDBnameid = [];
 //HTML selected items
 var genreSelectionArray = [];
 var selectResult = [];
+var unHideSelectedTV = [];
 
 
 //on page load items
@@ -110,29 +112,68 @@ $(document).ready()
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
-$("select").change(function () {
+$("select").on("change", function () {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
   genreSelectionArray.push($('select#genreSelection').val());
+  var $selectDropdown = $("#genreSelection");
+  $selectDropdown.trigger('contentChanged');
 
-  unHideItemsWithIDs(toString(genreSelectionArray));
+  if (genreSelectionArray.length === 2) {
+    hideAllItemsByIDs();
+  }
+  // unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
 
 //function to hide items
-function hideItem(i, item) {
-  return $(item).hide();
+function hideAllItemsByIDs() {
+  for (let i = 0; i < popTVList.length; i++) {
+    allTVIDs.push(popTVList[i].id);
+
+  }
+  for (let i = 0; i < allTVIDs.length; i++) {
+    var tvlist = "#" + allTVIDs[i];
+    // console.log(tvlist);
+    $(tvlist).addClass("hide");
+  }
+  for (let i = 0; i < genreSelectionArray.length; i++) {
+    $()
+  }
 }
-function hideItemsWithIDs(ids) {
-  $(ids.join()).each(hideItem);
+//|| popTVList[i].genre_ids[i] == genreSelectionArray[1])
+function searchArryObject() {
+  unHideSelectedTV = [];
+  for (let i = 0; i < popTVList.length; i++) {
+    for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
+        unHideSelectedTV.push(popTVList[i].id);
+        console.log("found tvID:  " + popTVList[i].id);
+      
+    }
+    }
+    
+  }
+  for (let i = 0; i < unHideSelectedTV.length; i++) {
+    var unhideTVID = "#" + unHideSelectedTV[i];
+    console.log("unhide ID:  " + unhideTVID);
+    $(unhideTVID).removeClass("hide");
+  }
 }
 
-function unHideItem(i, item) {
-  return $(item).hide();
-}
-function unHideItemsWithIDs(ids) {
-  $(ids.join()).each(unHideItem);
-}
+// function hideItem(item) {
+//   $('#' +item).hide();
+// }
+// function hideItemsWithIDs(ids) {
+//   $(ids).each(hideItem(ids));
+// }
+
+// function unHideItem(i,item) {
+//   return $(item).hide();
+// }
+// function unHideItemsWithIDs(ids) {
+//   $(ids.join()).each(unHideItem);
+// }
 
 
 //function to build the URL used to make the API request for genera ID's and names.
