@@ -37,16 +37,17 @@ body{
 
 }
 
-#movieSearch{
+#movieSearch, #tvSearch{
     color: white;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
 }
 
-#tvSearch{
-    color: white;
-    font-family: 'Coda Caption', sans-serif;
-    font-family: 'Orbitron', sans-serif;
+
+
+.collapsible-body{
+    background-color: white;
+    z-index: 10;
 }
 
 #TVshow {
@@ -77,6 +78,12 @@ body{
     color: #00004d;
     border: dotted;
 
+}
+
+.collapsible-body{
+    background-color: white;
+    z-index: 1000;
+    position: relative;
 }
 
    
@@ -122,4 +129,3 @@ body{
     font-family: 'Orbitron', sans-serif;
     
 }
-
