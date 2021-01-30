@@ -29,21 +29,6 @@ body{
     background-color: #80deea;
 }
 
-/* #teal-btn{
-    background-color: #80deea;
-    font-family: 'Coda Caption', sans-serif;
-    font-family: 'Orbitron', sans-serif;
-    
-}
-
-#dropMe{
-    background-color: white;
-    color:#00004d;
-    font-family: 'Coda Caption', sans-serif;
-    font-family: 'Orbitron', sans-serif;
-
-} */
-
 #genreBtn{
     background-color:#80deea;
     color: white;
@@ -52,12 +37,32 @@ body{
 
 }
 
-#movieSearch{
+#movieSearch, #tvSearch{
     color: white;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
 }
- 
+
+
+
+.collapsible-body{
+    background-color: white;
+    z-index: 10;
+}
+
+#TVshow {
+    position: absolute;
+    left: 50%;
+    top: 120px;
+    width: 90%;
+}
+
+#searchBtn {
+    position: absolute;
+    left: 99%;
+    top: 15px;
+}
+
 
 /* mission page css */
 
@@ -73,6 +78,12 @@ body{
     color: #00004d;
     border: dotted;
 
+}
+
+.collapsible-body{
+    background-color: white;
+    z-index: 1000;
+    position: relative;
 }
 
    
@@ -114,5 +125,7 @@ body{
 .input-field {
     margin-left: 4%;
     width: 45%;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    
 }
-
