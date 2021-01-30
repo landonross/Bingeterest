@@ -146,7 +146,7 @@ function searchArryObject() {
   unHideSelectedTV = [];
   for (let i = 0; i < popTVList.length; i++) {
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
-      if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0] || popTVList[i].genre_ids[i] == genreSelectionArray[1]) {
         unHideSelectedTV.push(popTVList[i].id);
         console.log("found tvID:  " + popTVList[i].id);
       
