@@ -37,17 +37,17 @@ body{
 
 }
 
-#movieSearch{
+#movieSearch, #tvSearch{
     color: white;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
 }
 
-.collapsible-body{
-    
-}
- 
 
+.collapsible-body{
+    background-color: white;
+    z-index: 10;
+}
 
 /* mission page css */
 
@@ -108,6 +108,5 @@ body{
     font-family: 'Orbitron', sans-serif;
     
 }
-
 
 
