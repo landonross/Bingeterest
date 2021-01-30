@@ -78,6 +78,7 @@ var TMDBtvPopqueryURL = "";
 var TMDBresponseTV = "";
 var popTVList = [];
 var TMBpopTV = [];
+var allTVIDs = [];
 //Genre
 var TMDBtvGenrequeryURL = "";
 var TMDBresponseTVg = "";
@@ -87,6 +88,7 @@ var TMDBnameid = [];
 //HTML selected items
 var genreSelectionArray = [];
 var selectResult = [];
+var unHideSelectedTV = [];
 
 
 //on page load items
@@ -114,26 +116,61 @@ $("select").change(function() {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
   genreSelectionArray.push($('select#genreSelection').val()); 
+  var $selectDropdown = $("#genreSelection");
+  $selectDropdown.trigger('contentChanged');
 
-  hideItemsWithIDs(toString(genreList));
-  unHideItemsWithIDs(toString(genreSelectionArray));
+  if (genreSelectionArray.length === 2){
+  hideAllItemsByIDs();
+  }
+  // unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
 
 //function to hide items
-function hideItem(i,item) {
-  return $(item).hide();
-}
-function hideItemsWithIDs(ids) {
-  $(ids.join()).each(hideItem);
+function hideAllItemsByIDs() {
+  for (let i = 0; i < popTVList.length; i++) {
+    allTVIDs.push(popTVList[i].id);
+    
+  }
+  for (let i = 0; i < allTVIDs.length; i++) {
+    var tvlist = "#"+ allTVIDs[i];
+    console.log(tvlist);
+    $(tvlist).addClass("hide");
+  }
+  for (let i = 0; i < genreSelectionArray.length; i++) {
+    $()
+  }
 }
 
-function unHideItem(i,item) {
-  return $(item).hide();
+function searchArryObject() {
+  for (let i = 0; i < genreList.length; i++) {
+    unHideSelectedTV.splice(0, unHideSelectedTV.length)
+    if(popTVList[i].genre_ids[i] == genreSelectionArray[0] || popTVList[i].genre_ids[i] == genreSelectionArray[1]) {
+      unHideSelectedTV.push(popTVList[i].id);
+      console.log("found tvID:  " + popTVList[i].id);
+    }
+    for (let i = 0; i < unHideSelectedTV.length; i++) {
+      var unhideTVID = "#" + unHideSelectedTV[i];
+      console.log(unhideTVID);
+      $(unhideTVID).removeClass("hide");
+    }
+    
+  }
 }
-function unHideItemsWithIDs(ids) {
-  $(ids.join()).each(unHideItem);
-}
+
+// function hideItem(item) {
+//   $('#' +item).hide();
+// }
+// function hideItemsWithIDs(ids) {
+//   $(ids).each(hideItem(ids));
+// }
+
+// function unHideItem(i,item) {
+//   return $(item).hide();
+// }
+// function unHideItemsWithIDs(ids) {
+//   $(ids.join()).each(unHideItem);
+// }
 
 
 //function to build the URL used to make the API request for genera ID's and names.
