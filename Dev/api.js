@@ -113,8 +113,26 @@ $('.dropdown-trigger').dropdown();
 $("select").change(function() {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
-  genreSelectionArray.push($('select#genreSelection').val());
+  genreSelectionArray.push($('select#genreSelection').val()); 
+
+  unHideItemsWithIDs(toString(genreSelectionArray));
+
 })
+
+//function to hide items
+function hideItem(i,item) {
+  return $(item).hide();
+}
+function hideItemsWithIDs(ids) {
+  $(ids.join()).each(hideItem);
+}
+
+function unHideItem(i,item) {
+  return $(item).hide();
+}
+function unHideItemsWithIDs(ids) {
+  $(ids.join()).each(unHideItem);
+}
 
 
 //function to build the URL used to make the API request for genera ID's and names.
@@ -158,11 +176,12 @@ function genreTVURLquery() {
     // pushes the response into array genrelist
     var TMBgenre = TMDBresponseTVg.genres
     for (let i = 0; i < TMDBresponseTVg.genres.length; i++) {
-      genreList.push(TMBgenre[i]);
+      genreList.push(TMBgenre[i].id);
 
     }
   })
 }
+genreTVURLquery()
 
 //Function to grab and store Popular TV items
 function TVURLquery() {
@@ -202,8 +221,9 @@ function createTVCard() {
     xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div class="col m2">
-            <div id="${TVID}" data-genre="${xGenre}" class="card small" style="width: 200px;">
+
+            <div class="col m2" id="${TVID}">
+            <div data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
                 <span class="card-title">${TVName}</span>
