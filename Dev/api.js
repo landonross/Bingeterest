@@ -41,7 +41,7 @@ function searchShow() {
     for (let i = 0; i < tvShow.results.length; i++) {
 
       $("#cardContainer").append(`
-            <div class="col m4">
+            <div class="col m2">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${tvShow.results[i].poster_path}">
@@ -165,7 +165,7 @@ function createTVCard() {
     xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div class="col m2">
+            <div class="col m2" id="allCards">
             <div id="${TVID}" data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
