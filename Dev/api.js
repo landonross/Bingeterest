@@ -40,8 +40,8 @@ function searchShow() {
 
     for (let i = 0; i < tvShow.results.length; i++) {
 
-      $(".cardDisplay").append(`
-            <div class="col m4">
+      $("#cardContainer").append(`
+            <div class="col m2">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${tvShow.results[i].poster_path}">
@@ -84,24 +84,56 @@ var TMDBresponseTVg = "";
 var genreList = [];
 var TMDBnameid = [];
 
+//HTML selected items
+var genreSelectionArray = [];
+var selectResult = [];
+
 
 //on page load items
 $(document).ready()
 {
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
-
+  //materialize recommended
+  $('select').formSelect();
+  $('select').select();
+  
+    $("select").click(function () {
+    // 1) setup listener for custom event to re-initialize on change
+    $(this).material_select('update');
+  });
+  genreSelectionArray.splice(0, genreSelectionArray.length)
 
 };
 
+//Button Listeners
+//Drop down listener
+$('.dropdown-trigger').dropdown();
+//Genre selection submit
+$("select").change(function() {
+  console.log($('select#genreSelection').val());
+  genreSelectionArray.shift();
+  genreSelectionArray.push($('select#genreSelection').val()); 
 
-$("#genraDropDown").on("change", function () {
-  //Getting Value
-  var selValue = $("#genraDropDown").val();
-  //Setting Value
-  // $("#").val(selValue);
-  console.log("YOU selected value:    " + selValue)
-});
+  unHideItemsWithIDs(toString(genreSelectionArray));
+
+})
+
+//function to hide items
+function hideItem(i,item) {
+  return $(item).hide();
+}
+function hideItemsWithIDs(ids) {
+  $(ids.join()).each(hideItem);
+}
+
+function unHideItem(i,item) {
+  return $(item).hide();
+}
+function unHideItemsWithIDs(ids) {
+  $(ids.join()).each(unHideItem);
+}
+
 
 //function to build the URL used to make the API request for genera ID's and names.
 function buildGenreQueryTMDB() {
@@ -144,25 +176,12 @@ function genreTVURLquery() {
     // pushes the response into array genrelist
     var TMBgenre = TMDBresponseTVg.genres
     for (let i = 0; i < TMDBresponseTVg.genres.length; i++) {
-      genreList.push(TMBgenre[i]);
+      genreList.push(TMBgenre[i].id);
 
     }
-
-    //create li to view ID and Name for each genre
-    for (let i = 0; i < genreList.length; i++) {
-      var TMDBid = genreList[i].id;
-      var TMDBname = genreList[i].name;
-      var idName = TMDBid + ":  " + TMDBname;
-      TMDBnameid.push(idName);
-      $("#dropdown1").append('<li value="aa' + TMDBid + '">' + TMDBname + '</li>');
-      $("#dropdown2").append('<li value="bb' + TMDBid + '">' + TMDBname + '</li>');
-      //create drop down, id for each, and value for each item in drop down.
-      // $("#genraDropDown").append("<option id=dd" + i + " value=" + TMDBid + "></option>")
-    }
-
   })
 }
-genreTVURLquery();
+genreTVURLquery()
 
 //Function to grab and store Popular TV items
 function TVURLquery() {
@@ -180,8 +199,46 @@ function TVURLquery() {
       popTVList.push(TMBpopTV[i]);
 
     }
-  })
+    createTVCard()
+  });
 }
 TVURLquery()
+
+//creates the Cards from the popular API
+function createTVCard() {
+  var TVID = "";
+  var TVName = "";
+  var posterPath = "";
+  var showGenre = [];
+  var showOverview = "";
+  var tvStreamURL = "";
+  for (let i = 0; i < popTVList.length; i++) {
+    TVID = popTVList[i].id;
+    TVName = popTVList[i].name;
+    posterPath = popTVList[i].poster_path;
+    showGenre.push(popTVList[i].genre_ids);
+    showOverview = popTVList[i].overview;
+    xGenre = showGenre.toString()
+
+    $("#cardContainer").append(`
+            <div class="col m2" id="${TVID}">
+            <div data-genre="${xGenre}" class="card small" style="width: 200px;">
+              <div class="card-image">
+                <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
+                <span class="card-title">${TVName}</span>
+              </div>
+              <div class="card-content">
+                <p>${showOverview}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+            `)
+            showGenre.splice(0, showGenre.length)
+  }
+
+}
+
 
 

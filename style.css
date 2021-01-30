@@ -53,14 +53,16 @@ body{
     width: 960px;
     margin:auto;
     margin-top: 100px;
+    margin-bottom: 0;
     padding: 45px;
     color: #00004d;
     border: dotted;
 
 }
 
-.m2 {
-    display: table;
+#allCards {
+        display: table;
+    
 }
 
 
@@ -85,5 +87,23 @@ body{
     color: white;
     font-family: 'Coda Caption', sans-serif;
     font-family: 'Orbitron', sans-serif;
+}
+
+
+#genraDropDown {
+    background-color: #80deea;
+    color: white;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    
+}
+
+.input-field [type=text] {
+    color: white;
+}
+
+.input-field {
+    margin-left: 4%;
+    width: 45%;
 }
 
