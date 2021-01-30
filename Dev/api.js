@@ -27,10 +27,15 @@
 //     newShows()
 
 
-function searchShow() {
-  var tvName = "Family Guy"
+
+  function searchShow() {
+    $("#searchBtn").click(function () {
+      hideAllItemsByIDs()
+      var tvShow = $("#icon_prefix2").val();
+    
+  var tvName = ""
   $.ajax({
-    url: "https://api.themoviedb.org/3/search/tv?query=" + tvName + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
+    url: "https://api.themoviedb.org/3/search/tv?query=" + tvShow + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
     data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
     header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
     dataType: "json",
@@ -67,10 +72,11 @@ function searchShow() {
       //     console.log(images)
       // })
     }
-
+  })
 
   })
 }
+
 searchShow()
 
 //popular 
