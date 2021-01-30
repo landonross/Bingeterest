@@ -146,13 +146,18 @@ function searchArryObject() {
   unHideSelectedTV = [];
   for (let i = 0; i < popTVList.length; i++) {
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
-      if (popTVList[i].genre_ids[x] == genreSelectionArray[0] || popTVList[i].genre_ids[i] == genreSelectionArray[1]) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
         unHideSelectedTV.push(popTVList[i].id);
         console.log("found tvID:  " + popTVList[i].id);
-      
+      }
     }
+    for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[1]) {
+        unHideSelectedTV.push(popTVList[i].id);
+        console.log("found tvID:  " + popTVList[i].id);
+
+      }
     }
-    
   }
   for (let i = 0; i < unHideSelectedTV.length; i++) {
     var unhideTVID = "#" + unHideSelectedTV[i];
