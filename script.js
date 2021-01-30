@@ -31,7 +31,3 @@
 var genre1 = [];
 var genre2 = "";
 var dropDownNumber = "";
-
-
-
-
