@@ -202,7 +202,7 @@ function createTVCard() {
     xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div class="col m2" id="allCards">
+            <div class="col m2">
             <div id="${TVID}" data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
