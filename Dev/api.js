@@ -94,11 +94,11 @@ $(document).ready()
 {
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
+  //materialize recommended
   $('select').formSelect();
   $('select').select();
-  // $("select").material_select();
   
-  $("select").click(function () {
+    $("select").click(function () {
     // 1) setup listener for custom event to re-initialize on change
     $(this).material_select('update');
   });
@@ -110,28 +110,11 @@ $(document).ready()
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
-
 $("select").change(function() {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
   genreSelectionArray.push($('select#genreSelection').val());
-  
-  
-
 })
-
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   const selects = document.querySelector("select");
-//   const instances = M.FormSelect.init(selects, {});
-//   const selectOption = document.querySelector("#genreSelection");
-    
-//   selectOption.addEventListener("change", function () {
-//     const instance = M.FormSelect.getInstance(selectOption);
-//     const selectedValues = instance.getSelectedValues();
-//     console.log(selectedValues);
-//   });
-// });
 
 
 //function to build the URL used to make the API request for genera ID's and names.
