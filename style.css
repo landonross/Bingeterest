@@ -44,6 +44,7 @@ body{
 }
  
 
+
 /* mission page css */
 
 #textArea{
@@ -105,5 +106,8 @@ body{
 .input-field {
     margin-left: 4%;
     width: 45%;
+    font-family: 'Coda Caption', sans-serif;
+    font-family: 'Orbitron', sans-serif;
+    
 }
 
