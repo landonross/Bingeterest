@@ -31,12 +31,3 @@
 var genre1 = [];
 var genre2 = "";
 var dropDownNumber = "";
-
-
-
-
-  $('.dropdown-trigger').dropdown();
-
-  $(document).ready(function(){
-    $('select').formSelect();
-  });

@@ -27,10 +27,15 @@
 //     newShows()
 
 
-function searchShow() {
-  var tvName = "The Simpsons"
+
+  function searchShow() {
+    $("#searchBtn").click(function () {
+      hideAllItemsByIDs()
+      var tvShow = $("#icon_prefix2").val();
+    
+  var tvName = ""
   $.ajax({
-    url: "https://api.themoviedb.org/3/search/tv?query=" + tvName + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
+    url: "https://api.themoviedb.org/3/search/tv?query=" + tvShow + "&api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1&include_adult=false",
     data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
     header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
     dataType: "json",
@@ -41,18 +46,18 @@ function searchShow() {
     for (let i = 0; i < tvShow.results.length; i++) {
 
       $("#cardContainer").append(`
-            <div class="col m2">
+            <div class="col m2" style="display: table;">
             <div class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${tvShow.results[i].poster_path}">
-                <span class="card-title">${tvShow.results[i].original_name}</span>
+                <span class="card-title"></span>
               </div>
-              <div class="card-content">
-                <p>${tvShow.results[i].overview}</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
+              <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">${tvShow.results[i].original_name}</div>
+                <div class="collapsible-body"><span>${tvShow.results[i].overview}</span></div>
+              </li>
+              </ul>
             </div>
           </div>
             `)
@@ -67,10 +72,11 @@ function searchShow() {
       //     console.log(images)
       // })
     }
-
+  })
 
   })
 }
+
 searchShow()
 
 //popular 
@@ -78,6 +84,7 @@ var TMDBtvPopqueryURL = "";
 var TMDBresponseTV = "";
 var popTVList = [];
 var TMBpopTV = [];
+var allTVIDs = [];
 //Genre
 var TMDBtvGenrequeryURL = "";
 var TMDBresponseTVg = "";
@@ -87,6 +94,7 @@ var TMDBnameid = [];
 //HTML selected items
 var genreSelectionArray = [];
 var selectResult = [];
+var unHideSelectedTV = [];
 
 
 //on page load items
@@ -97,8 +105,8 @@ $(document).ready()
   //materialize recommended
   $('select').formSelect();
   $('select').select();
-  
-    $("select").click(function () {
+
+  $("select").click(function () {
     // 1) setup listener for custom event to re-initialize on change
     $(this).material_select('update');
   });
@@ -110,29 +118,68 @@ $(document).ready()
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
-$("select").change(function() {
+$("select").on("change", function () {
   console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
-  genreSelectionArray.push($('select#genreSelection').val()); 
+  genreSelectionArray.push($('select#genreSelection').val());
+  var $selectDropdown = $("#genreSelection");
+  $selectDropdown.trigger('contentChanged');
 
-  unHideItemsWithIDs(toString(genreSelectionArray));
+  if (genreSelectionArray.length === 2) {
+    hideAllItemsByIDs();
+  }
+  // unHideItemsWithIDs(toString(genreSelectionArray));
 
 })
 
 //function to hide items
-function hideItem(i,item) {
-  return $(item).hide();
+function hideAllItemsByIDs() {
+  for (let i = 0; i < popTVList.length; i++) {
+    allTVIDs.push(popTVList[i].id);
+
+  }
+  for (let i = 0; i < allTVIDs.length; i++) {
+    var tvlist = "#" + allTVIDs[i];
+    // console.log(tvlist);
+    $(tvlist).addClass("hide");
+  }
+  for (let i = 0; i < genreSelectionArray.length; i++) {
+    $()
+  }
 }
-function hideItemsWithIDs(ids) {
-  $(ids.join()).each(hideItem);
+//|| popTVList[i].genre_ids[i] == genreSelectionArray[1])
+function searchArryObject() {
+  unHideSelectedTV = [];
+  for (let i = 0; i < popTVList.length; i++) {
+    for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0]) {
+        unHideSelectedTV.push(popTVList[i].id);
+        console.log("found tvID:  " + popTVList[i].id);
+      
+    }
+    }
+    
+  }
+  for (let i = 0; i < unHideSelectedTV.length; i++) {
+    var unhideTVID = "#" + unHideSelectedTV[i];
+    console.log("unhide ID:  " + unhideTVID);
+    $(unhideTVID).removeClass("hide");
+  }
 }
 
-function unHideItem(i,item) {
-  return $(item).hide();
-}
-function unHideItemsWithIDs(ids) {
-  $(ids.join()).each(unHideItem);
-}
+// function hideItem(item) {
+//   $('#' +item).hide();
+// }
+// function hideItemsWithIDs(ids) {
+//   $(ids).each(hideItem(ids));
+// }
+
+// function unHideItem(i,item) {
+//   return $(item).hide();
+// }
+// function unHideItemsWithIDs(ids) {
+//   $(ids.join()).each(unHideItem);
+// }
 
 
 //function to build the URL used to make the API request for genera ID's and names.
@@ -221,40 +268,35 @@ function createTVCard() {
     xGenre = showGenre.toString()
 
     $("#cardContainer").append(`
-            <div class="col m2" id="${TVID}">
+
+            <div class="col m2" id="${TVID}" style="display: table;">
             <div data-genre="${xGenre}" class="card small" style="width: 200px;">
               <div class="card-image">
                 <img src="https://image.tmdb.org/t/p/w500//${posterPath}">
-                <span class="card-title">${TVName}</span>
+                <span class="card-title"></span>
               </div>
-              <div class="card-content">
-                <p>${showOverview}</p>
-              </div>
-              <div class="card-action">
-                <a href="#">This is a link</a>
-              </div>
+              <ul class="collapsible">
+              <li>
+                <div class="collapsible-header">${TVName}</div>
+                <div class="collapsible-body"><span>${showOverview}</span></div>
+              </li>
+              </ul>
+            </div>
             </div>
             `)
-            showGenre.splice(0, showGenre.length)
+    showGenre.splice(0, showGenre.length)
+
+    $(document).ready(function () {
+      $('.collapsible').collapsible();
+    });
   }
 
 }
 
 
-
-function streamingService() {
-  var streamingName = "The Simpsons";
-  $.ajax({
-    url: "https://api.themoviedb.org/3/tv/&"+ streamingName +"/watch/providers?api_key=9266330c9fa3cd2229ad670d2a3881bc",
-    data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-    dataType: "json",
-    method: "GET",
-  }).then(function (streamingService) {
-    console.log(streamingService);
-
-  });
-
-}
-streamingService();
-console.log(streamingService)
+{/* <div class="card-content">
+<p>${showOverview}</p>
+</div>
+<div class="card-action">
+<il>${TVName}</il>
+</div> */}
