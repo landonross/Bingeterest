@@ -81,7 +81,9 @@ searchShow()
 
 //popular 
 var TMDBtvPopqueryURL = "";
+var TMDBtvPopqueryURL2 = "";
 var TMDBresponseTV = "";
+var TMDBresponseTV2 = "";
 var popTVList = [];
 var TMBpopTV = [];
 var allTVIDs = [];
@@ -102,6 +104,7 @@ $(document).ready()
 {
   buildGenreQueryTMDB()
   buildTVPopQueryTMDB()
+  buildTVPopQueryTMDB2()
   //materialize recommended
   $('select').formSelect();
   $('select').select();
@@ -122,7 +125,7 @@ $(document).ready()
       hideAllItemsByIDs();
       searchArryObject();
     } else {
-      
+
     }
   })
 // }
@@ -153,9 +156,7 @@ function hideAllItemsByIDs() {
     // console.log(tvlist);
     $(tvlist).addClass("hide");
   }
-  // for (let i = 0; i < genreSelectionArray.length; i++) {
-  //   $()
-  // }
+ 
 }
 //|| popTVList[i].genre_ids[i] == genreSelectionArray[1])
 function searchArryObject() {
@@ -216,13 +217,27 @@ function buildTVPopQueryTMDB() {
   // Set the API key
   var APIKey = "7c2207b398a6d440727425799edd2f6f";
 
-  var queryParams = "&language=en-US&page=1";
+  var queryParams = "&language=en-US&page=1&include_adult=false";
 
   // queryURL query the API
   TMDBtvPopqueryURL = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f" + queryParams;
 
   // UVURLquery()
   return TMDBtvPopqueryURL;
+};
+
+//function to build URL for Popular TV shows
+function buildTVPopQueryTMDB2() {
+  // Set the API key
+  var APIKey = "7c2207b398a6d440727425799edd2f6f";
+
+  var queryParams = "&language=en-US&page=2&include_adult=false";
+
+  // queryURL query the API
+  TMDBtvPopqueryURL2 = "https://api.themoviedb.org/3/tv/popular?api_key=7c2207b398a6d440727425799edd2f6f" + queryParams;
+
+  // UVURLquery()
+  return TMDBtvPopqueryURL2;
 };
 
 //function to query TMBD genre API
@@ -245,7 +260,7 @@ function genreTVURLquery() {
 }
 genreTVURLquery()
 
-//Function to grab and store Popular TV items
+//Function to grab and store Popular TV items page 1
 function TVURLquery() {
   $.ajax({
     url: TMDBtvPopqueryURL,
@@ -261,10 +276,31 @@ function TVURLquery() {
       popTVList.push(TMBpopTV[i]);
 
     }
-    createTVCard()
+    // createTVCard()
   });
 }
 TVURLquery()
+
+//Function to grab and store Popular TV items page 2
+function TVURLquery2() {
+  $.ajax({
+    url: TMDBtvPopqueryURL2,
+    data: { "api_key": "7c2207b398a6d440727425799edd2f6f" },
+    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
+    dataType: "json",
+    method: "GET",
+  }).then(function (TMDBresponseTV2) {
+    console.log(TMDBresponseTV2);
+    // pushes the response into array genrelist
+    var TMBpopTV = TMDBresponseTV2.results
+    for (let i = 0; i < TMDBresponseTV2.results.length; i++) {
+      popTVList.push(TMBpopTV[i]);
+
+    }
+    createTVCard()
+  });
+}
+TVURLquery2()
 
 //creates the Cards from the popular API
 function createTVCard() {
@@ -273,7 +309,7 @@ function createTVCard() {
   var posterPath = "";
   var showGenre = [];
   var showOverview = "";
-  var tvStreamURL = "";
+  // var tvStreamURL = "";
   for (let i = 0; i < popTVList.length; i++) {
     TVID = popTVList[i].id;
     TVName = popTVList[i].name;
