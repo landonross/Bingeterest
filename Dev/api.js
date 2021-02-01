@@ -1,33 +1,4 @@
-// function ratings() {
-//     $.ajax({
-//         url: "https://api.themoviedb.org/3/tv/top_rated?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US&page=1",
-//         data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-//         header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-//         dataType: "json",
-//         method: "GET",
-//     }).then(function (topRated) {
-//         console.log(topRated);
-//         })
-
-// }   
-// ratings();
-
-
-//     function newShows(){
-//         $.ajax({
-//         url: "https://api.themoviedb.org/3/tv/85271/images?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US",
-//         data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-//         header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-//         dataType: "json",
-//         method: "GET",
-//     }).then(function (newShows) {
-//         console.log(newShows);
-//         })
-//     }
-//     newShows()
-
-
-
+//Funciton to search by TV series Name
 function searchShow() {
   $("#searchBtn").click(function () {
     hideAllItemsByIDs()
@@ -41,7 +12,7 @@ function searchShow() {
       dataType: "json",
       method: "GET",
     }).then(function (tvShow) {
-      console.log(tvShow);
+      // console.log(tvShow);
 
       for (let i = 0; i < tvShow.results.length; i++) {
 
@@ -62,15 +33,6 @@ function searchShow() {
           </div>
             `)
 
-        // $.ajax({
-        //     url:"https://api.themoviedb.org/3/tv/"+tvShow.results[i].id+"/images?api_key=9266330c9fa3cd2229ad670d2a3881bc&language=en-US",
-        //     data: { "api_key": "9266330c9fa3cd2229ad670d2a3881bc" },
-        //    header: "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzIyMDdiMzk4YTZkNDQwNzI3NDI1Nzk5ZWRkMmY2ZiIsInN1YiI6IjYwMGM2Y2RmYzg2YjNhMDA0MWJmMWU5MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.dJyUUTkXtbl96uQ3VP8STmbmtCvYBt-RrCuyo2O91og",
-        //    dataType: "json",
-        //    method: "GET",
-        // }).then(function(images){
-        //     console.log(images)
-        // })
       }
     })
 
@@ -119,22 +81,22 @@ $(document).ready()
 
 //Button Listeners
 // function searchShow() {
-  $("#genreBtn").click(function () {
-    console.log("clicked");
-    if (genreSelectionArray[0].length <= 2) {
-      hideAllItemsByIDs();
-      searchArryObject();
-    } else {
-
-    }
-  })
+$("#genreBtn").click(function () {
+  // console.log("clicked");
+  if (genreSelectionArray[0].length <= 4) {
+    hideAllItemsByIDs();
+    searchArryObject();
+  } else {
+    //Future alert Function.
+  }
+})
 // }
 
 //Drop down listener
 $('.dropdown-trigger').dropdown();
 //Genre selection submit
 $("select").on("change", function () {
-  console.log($('select#genreSelection').val());
+  // console.log($('select#genreSelection').val());
   genreSelectionArray.shift();
   genreSelectionArray.push($('select#genreSelection').val());
   var $selectDropdown = $("#genreSelection");
@@ -156,7 +118,7 @@ function hideAllItemsByIDs() {
     // console.log(tvlist);
     $(tvlist).addClass("hide");
   }
- 
+
 }
 //|| popTVList[i].genre_ids[i] == genreSelectionArray[1])
 function searchArryObject() {
@@ -165,20 +127,34 @@ function searchArryObject() {
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
       if (popTVList[i].genre_ids[x] == genreSelectionArray[0][0]) {
         unHideSelectedTV.push(popTVList[i].id);
-        console.log("1st found tvID:  " + popTVList[i].id);
+        // console.log("1st found tvID:  " + popTVList[i].id);
       }
     }
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
       if (popTVList[i].genre_ids[x] == genreSelectionArray[0][1]) {
         unHideSelectedTV.push(popTVList[i].id);
-        console.log("2nd found tvID:  " + popTVList[i].id);
+        // console.log("2nd found tvID:  " + popTVList[i].id);
+
+      }
+    }
+    for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][2]) {
+        unHideSelectedTV.push(popTVList[i].id);
+        // console.log("2nd found tvID:  " + popTVList[i].id);
+
+      }
+    }
+    for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][2]) {
+        unHideSelectedTV.push(popTVList[i].id);
+        // console.log("2nd found tvID:  " + popTVList[i].id);
 
       }
     }
   }
   for (let i = 0; i < unHideSelectedTV.length; i++) {
     var unhideTVID = "#" + unHideSelectedTV[i];
-    console.log("unhide ID:  " + unhideTVID);
+    // console.log("unhide ID:  " + unhideTVID);
     $(unhideTVID).removeClass("hide");
   }
 }
@@ -249,7 +225,7 @@ function genreTVURLquery() {
     dataType: "json",
     method: "GET",
   }).then(function (TMDBresponseTVg) {
-    console.log(TMDBresponseTVg);
+    // console.log(TMDBresponseTVg);
     // pushes the response into array genrelist
     var TMBgenre = TMDBresponseTVg.genres
     for (let i = 0; i < TMDBresponseTVg.genres.length; i++) {
@@ -269,7 +245,7 @@ function TVURLquery() {
     dataType: "json",
     method: "GET",
   }).then(function (TMDBresponseTV) {
-    console.log(TMDBresponseTV);
+    // console.log(TMDBresponseTV);
     // pushes the response into array genrelist
     var TMBpopTV = TMDBresponseTV.results
     for (let i = 0; i < TMDBresponseTV.results.length; i++) {
@@ -290,7 +266,7 @@ function TVURLquery2() {
     dataType: "json",
     method: "GET",
   }).then(function (TMDBresponseTV2) {
-    console.log(TMDBresponseTV2);
+    // console.log(TMDBresponseTV2);
     // pushes the response into array genrelist
     var TMBpopTV = TMDBresponseTV2.results
     for (let i = 0; i < TMDBresponseTV2.results.length; i++) {
@@ -317,7 +293,7 @@ function createTVCard() {
     showGenre.push(popTVList[i].genre_ids);
     showOverview = popTVList[i].overview;
     xGenre = showGenre.toString()
-
+    //Card template
     $("#cardContainer").append(`
 
             <div class="col m2" id="${TVID}" style="display: table;">
