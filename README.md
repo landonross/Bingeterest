@@ -1,5 +1,5 @@
 # Bingeterest
-Movies and TV Shows for the soul
+TV Show ideas board.
 
 
 This webpage pulls information from [TMDB.org 's](https://www.themoviedb.org/) API.  
@@ -8,7 +8,7 @@ Deployed Link:  https://landonross.github.io/Bingeterest/.
 
 [GitHub Repository](https://github.com/landonross/Bingeterest)
 
-![ScreenShot](./assets/screenshot.jpg)
+![ScreenShot](./images/screenshot.jpg)
 
 This site will:
 
