@@ -145,7 +145,7 @@ function searchArryObject() {
       }
     }
     for (let x = 0; x < popTVList[i].genre_ids.length; x++) {
-      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][2]) {
+      if (popTVList[i].genre_ids[x] == genreSelectionArray[0][3]) {
         unHideSelectedTV.push(popTVList[i].id);
         // console.log("2nd found tvID:  " + popTVList[i].id);
 
