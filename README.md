@@ -8,7 +8,7 @@ Deployed Link:  https://landonross.github.io/Bingeterest/.
 
 [GitHub Repository](https://github.com/landonross/Bingeterest)
 
-![ScreenShot](./assets/screenshot.jpg)
+![ScreenShot](./images/screenshot.jpg)
 
 This site will:
 
