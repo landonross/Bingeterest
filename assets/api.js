@@ -159,20 +159,6 @@ function searchArryObject() {
   }
 }
 
-// function hideItem(item) {
-//   $('#' +item).hide();
-// }
-// function hideItemsWithIDs(ids) {
-//   $(ids).each(hideItem(ids));
-// }
-
-// function unHideItem(i,item) {
-//   return $(item).hide();
-// }
-// function unHideItemsWithIDs(ids) {
-//   $(ids.join()).each(unHideItem);
-// }
-
 
 //function to build the URL used to make the API request for genera ID's and names.
 function buildGenreQueryTMDB() {
@@ -319,11 +305,3 @@ function createTVCard() {
   }
 
 }
-
-
-{/* <div class="card-content">
-<p>${showOverview}</p>
-</div>
-<div class="card-action">
-<il>${TVName}</il>
-</div> */}
