@@ -15,4 +15,3 @@ This site will:
 - Pull several pages of the current top rated TV shows.
 - Allow you to filter results gy genre.
 - Allow you to search for a show by name.
-- 
